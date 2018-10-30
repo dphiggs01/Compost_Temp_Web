@@ -15,7 +15,7 @@ def plot():
     plt.ioff()
     dates, temps = compost_db.select_all_temp_data()
 
-    fig, ax = plt.subplots(figsize=(20, 5))
+    fig, ax = plt.subplots(figsize=(10, 5))
     ax.plot(dates, temps)
 
     plt.gcf().autofmt_xdate()
@@ -23,7 +23,8 @@ def plot():
     plt.gca().xaxis.set_major_formatter(myFmt)
 
     plt.title('Compost Temperatures')
-    fig.savefig('./static/images/plot.png')
+    fig.savefig('./static/images/plot.svg', bbox_inches='tight')
+    #fig.savefig('./static/images/plot.svg')
     plt.close(fig)
 
 
