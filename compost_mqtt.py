@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
-
-from compost_db import CompostDB
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from compost_db import CompostDB
 import time
 import ttn
 import json
 
 
 def plot():
+    print("In Plot")
     compost_db = CompostDB()
+    plt.ioff()
     dates, temps = compost_db.select_all_temp_data()
     fig = plt.figure(figsize=(20, 5))
     plt.scatter(dates, temps)
     plt.gcf().autofmt_xdate()
     plt.title('Compost Temperatures')
     fig.savefig('./static/images/plot.png')
-
+    plt.close(fig)
 
 def uplink_callback(msg, client):
     print("In call back")
