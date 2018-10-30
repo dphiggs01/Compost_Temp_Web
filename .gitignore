@@ -12,6 +12,8 @@ __pycache__/
 compost_mqtt.pid
 compost_mqtt.log
 config.json
+compost_temp.db
+static/images/plot.png
 
 # Distribution / packaging
 .Python

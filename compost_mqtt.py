@@ -2,6 +2,7 @@
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 from compost_db import CompostDB
 import time
 import ttn
@@ -13,12 +14,18 @@ def plot():
     compost_db = CompostDB()
     plt.ioff()
     dates, temps = compost_db.select_all_temp_data()
-    fig = plt.figure(figsize=(20, 5))
-    plt.scatter(dates, temps)
+
+    fig, ax = plt.subplots(figsize=(20, 5))
+    ax.plot(dates, temps)
+
     plt.gcf().autofmt_xdate()
+    myFmt = mdates.DateFormatter('%y-%m-%d %H:%M:%S')
+    plt.gca().xaxis.set_major_formatter(myFmt)
+
     plt.title('Compost Temperatures')
     fig.savefig('./static/images/plot.png')
     plt.close(fig)
+
 
 def uplink_callback(msg, client):
     print("In call back")
