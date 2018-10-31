@@ -32,15 +32,17 @@
 
 <body>
 
-    <div class="container" style="background-color:lavender;">
+    <div class="container" style="padding-top: 10px;background-color:lavender;">
 
-        <div class="row">
-            <div class="col-xs-8" style="background-color:lavender;"><h3>Compost Current Temp</h3>
+        <div id="my-row" class="row">
+            <div class="col-xs-8" style="background-color:lavender;">
+                <h3>Compost Temp</h3>
                 <h1>{{ ui_data.temperature }} <span>&#8457;</span></h1>
-                <h5>Latest Date: {{ ui_data.latest_date }}</h5>
+                <h5>Date: {{ ui_data.latest_date }}</h5>
             </div>
             <div class="col-xs-4" style="background-color:lavender;">
-                <img class="img-responsive img-circle" src="../static/images/compost2.jpg"/>
+                <h3>&nbsp</h3>
+                <img class="img-responsive img-circle" style="vertical-align: middle;" src="../static/images/compost2.jpg"/>
             </div>
         </div>
 
