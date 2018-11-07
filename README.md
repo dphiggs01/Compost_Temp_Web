@@ -1,8 +1,12 @@
-# compost_temp
-lora example using the things network
+# Compost Temp
 
-# Note
-a config.json file is require. The format is:
+## Atchitecture
+![Compost Temp](./docs/Architecture.png)
+
+LoRa example using The Things Network
+
+## Note
+A config.json file is require. The format is:
 
 ```
 {
@@ -11,13 +15,3 @@ a config.json file is require. The format is:
 }
 ```
 
-# ec2 install
-Ubuntu
-```
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install python3-matplotlib
-sudo apt install python3-pip
-pip3 install ttn
-
-```
