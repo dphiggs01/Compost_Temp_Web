@@ -3,6 +3,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from weather_data import temp_from_weather_station
 from compost_db import CompostDB
 import time
 import ttn
@@ -10,19 +11,22 @@ import json
 
 
 def plot():
-    print("In Plot")
     compost_db = CompostDB()
     plt.ioff()
-    dates, temps = compost_db.select_all_temp_data()
-
+    dates, compost_temps, outside_temps = compost_db.select_all_temp_data()
+    print(dates)
     fig, ax = plt.subplots(figsize=(10, 5))
-    ax.plot(dates, temps)
+    ax.plot(dates, compost_temps,label='compost')
+    ax.plot(dates, outside_temps,label='outside')
 
     plt.gcf().autofmt_xdate()
-    myFmt = mdates.DateFormatter('%y-%m-%d %H:%M:%S')
+    myFmt = mdates.DateFormatter('%b-%d')
     plt.gca().xaxis.set_major_formatter(myFmt)
 
     plt.title('Compost Temperatures')
+    ax.set_ylabel('Temperature (F)')
+    ax.grid(linestyle=':')
+    plt.legend(loc='upper left')
     fig.savefig('./static/images/plot.svg', bbox_inches='tight')
     #fig.savefig('./static/images/plot.svg')
     plt.close(fig)
@@ -37,7 +41,8 @@ def uplink_callback(msg, client):
     farenhiet_temp = round((celcius_temp * 9.0 / 5.0) + 32, 2)
     # print("farenhiet_temp {}".format(farenhiet_temp))
     # print("battery {}".format(msg.payload_fields.battery))
-    compost_db.insert_data(farenhiet_temp, msg.payload_fields.battery)
+    outside_temp = temp_from_weather_station()
+    compost_db.insert_data(farenhiet_temp, outside_temp, msg.payload_fields.battery)
     plot()
 
 
@@ -58,4 +63,4 @@ def mqtt_get_data():
 
 
 if __name__ == "__main__":
-    mqtt_get_data()
+    plot()
