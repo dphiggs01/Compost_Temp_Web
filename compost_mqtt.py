@@ -63,4 +63,5 @@ def mqtt_get_data():
 
 
 if __name__ == "__main__":
+    #mqtt_get_data()
     plot()

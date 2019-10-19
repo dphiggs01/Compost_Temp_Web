@@ -12,11 +12,14 @@ app = Flask(__name__)  # create the application instance :)
 
 @app.route('/<path:path>')
 def static_file(path):
+    print("path {}".format(path))
+    print("static {}".format(app.send_static_file(path)))
     return app.send_static_file(path)
 
 @app.route('/')
 @app.route('/index')
 def index():
+    print("path {}".format('heloo'))
     compost_db = CompostDB()
     temperature, battery, latest_date_str = compost_db.select_latest_temp_data()
     latest_date = datetime.strptime(latest_date_str, "%Y-%m-%d %H:%M:%S")
