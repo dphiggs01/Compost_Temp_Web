@@ -3,13 +3,13 @@
 
 This project uses an IOT Temperature Sensor
  [(The Thing Node)](https://www.thethingsnetwork.org/docs/devices/node/)
-to communicating via LoRaWAN to track the temperatures in my wife’s garden compost.
+communicating via LoRaWAN to track the temperatures in my wife’s garden compost.
 The compost box is pretty far back in the yard outside the reach of any WiFi.
-So using LoRa is practical solution for this problem.
+So using LoRa is a practical solution for this problem.
 (Given that I have a [LoRa Gateway](https://www.thethingsnetwork.org/docs/gateways/gateway/) to work with.)
 
-The App creates a simple website granted through a somewhat elaborate process
-to let her check on the temperature in the compost. If thing are working right
+The App creates a simple website, through a somewhat elaborate process,
+to check on the temperature in the compost box deep in our backyard. If things are working correctly
 with the compost the temps in the box should always be higher than the outside
 temperatures.
 
